@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f7fb" />
+    <meta
+      name="description"
+      content="Github Code Reviewer AI"
+    />
+    <title>Github Code Reviewer AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <div class="ambient ambient--cyan" aria-hidden="true"></div>
+      <div class="ambient ambient--blue" aria-hidden="true"></div>
+      <div class="blueprint-grid" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <a class="brand" href="#dashboard" aria-label="Github Code Reviewer AI home">
+          <span class="brand__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img" focusable="false">
+              <path d="m5 15 15 5 7-9c3.8-3 8.8-2.7 12 .8l4 4-7 2 5 4-9 2-5 7-7 1-8 8-3-9-1-8-8-8Z" />
+              <circle cx="34" cy="15" r="1.4" fill="#f8f7fb" />
+            </svg>
+          </span>
+          <span class="brand__name">Github Code Reviewer <span>AI</span></span>
+        </a>
+
+        <nav class="primary-nav" aria-label="Main navigation">
+          <a class="primary-nav__link primary-nav__link--active" href="#dashboard" aria-current="page">Dashboard</a>
+          <a class="primary-nav__link" href="#github-connection">Github Connection</a>
+          <a class="primary-nav__link" href="#history">History</a>
+          <a class="primary-nav__link" href="#api-docs">API Docs</a>
+        </nav>
+
+        <div class="topbar__account">
+          <span class="completion-badge" id="completion-badge" hidden>
+            <span class="completion-badge__dot" aria-hidden="true"></span>
+            <span class="completion-badge__label">ANALYSIS COMPLETE</span>
+          </span>
+          <div class="connection-status">
+            <span class="connection-status__dot" aria-hidden="true"></span>
+            <span>n8n Connected</span>
+          </div>
+          <span class="profile-avatar" aria-label="User profile: PM">PM</span>
+        </div>
+      </header>
+
+      <section class="dashboard" id="dashboard" aria-label="Code review dashboard">
+        <aside class="control-sidebar">
+          <section class="glass-card analyzer-card" aria-labelledby="analyzer-title">
+            <div class="card-heading">
+              <span class="section-icon section-icon--cyan" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="m12 2 9 5v10l-9 5-9-5V7l9-5Z" />
+                  <path d="m3.5 7.5 8.5 5 8.5-5M12 12.5V22" />
+                </svg>
+              </span>
+              <div>
+                <p class="card-kicker">GITHUB CODE REVIEW</p>
+                <h1 id="analyzer-title">Code Analyzer</h1>
+              </div>
+            </div>
+
+            <form class="analyzer-form" novalidate>
+              <label class="field-label" for="github-file-url">File Url</label>
+              <div class="url-input-wrap">
+                <svg class="url-input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="m12 2 9 5v10l-9 5-9-5V7l9-5Z" />
+                  <path d="m3.5 7.5 8.5 5 8.5-5M12 12.5V22" />
+                </svg>
+                <input
+                  id="github-file-url"
+                  name="github-file-url"
+                  type="url"
+                  placeholder="e.g. https://github.com/Sel_May_2026/blob/main/Week5/Day2/LearnDragAndDrop.java"
+                  autocomplete="url"
+                />
+              </div>
+
+              <fieldset class="review-options">
+                <legend>Review modules</legend>
+                <label class="option-row">
+                  <input type="checkbox" name="modules" value="readability" checked />
+                  <span>Code Readability</span>
+                </label>
+                <label class="option-row">
+                  <input type="checkbox" name="modules" value="efficiency" checked />
+                  <span>Code Efficiency</span>
+                </label>
+                <label class="option-row">
+                  <input type="checkbox" name="modules" value="error-handling" checked />
+                  <span>Error Handling</span>
+                </label>
+              </fieldset>
+
+              <p class="form-error" id="form-error" role="alert" hidden></p>
+
+              <button class="review-button" type="submit">
+                <span>Review Code</span>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14m-6-6 6 6-6 6" />
+                </svg>
+              </button>
+            </form>
+          </section>
+
+          <section class="glass-card pro-card" aria-labelledby="pro-title">
+            <span class="pro-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="m3 8 4.5 4L12 5l4.5 7L21 8l-2 11H5L3 8Z" />
+                <path d="M5 22h14" />
+              </svg>
+            </span>
+            <div class="pro-card__content">
+              <p class="card-kicker">PRO PLAN</p>
+              <h2 id="pro-title">Upgrade to Pro Plan</h2>
+            </div>
+            <span class="pro-card__arrow" aria-hidden="true">↗</span>
+          </section>
+        </aside>
+
+        <section class="workspace-overview" aria-label="Review metrics">
+          <div class="metrics-grid">
+            <article class="glass-card metric-card">
+              <span class="metric-icon metric-icon--blue" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
+                  <path d="M14 3v5h5M9 13h6M9 17h6" />
+                </svg>
+              </span>
+              <div class="metric-card__text">
+                <p>Files Checked</p>
+                <strong>24</strong>
+              </div>
+            </article>
+
+            <article class="glass-card metric-card">
+              <span class="metric-icon metric-icon--cyan" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3a9 9 0 1 0 9 9" />
+                  <path d="M12 7v5l3 2m1-10h5v5" />
+                </svg>
+              </span>
+              <div class="metric-card__text">
+                <p>Avg Quality Score</p>
+                <strong>86<span>%</span></strong>
+              </div>
+            </article>
+
+            <article class="glass-card metric-card">
+              <span class="metric-icon metric-icon--mint" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </span>
+              <div class="metric-card__text">
+                <p>Active Code Sync Status</p>
+                <strong class="metric-status"><span></span>Active</strong>
+              </div>
+            </article>
+          </div>
+
+          <section class="glass-card review-workspace workspace-card" aria-labelledby="workspace-title">
+            <header class="review-workspace__header">
+              <div>
+                <p class="card-kicker">AI CODE REVIEW</p>
+                <h2 id="workspace-title">Review Workspace</h2>
+              </div>
+            </header>
+
+            <div class="workspace-waiting">
+              <div class="radar-visual" aria-hidden="true">
+                <span class="radar-ring radar-ring--outer"></span>
+                <span class="radar-ring radar-ring--middle"></span>
+                <span class="radar-ring radar-ring--inner"></span>
+                <span class="radar-core">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M3 12h3l2.2-6 4.1 12 2.2-6H21" />
+                  </svg>
+                </span>
+              </div>
+              <h3>Ready when you are</h3>
+              <p>Enter a GitHub file URL and click <strong>Review Code</strong> to start your review.</p>
+            </div>
+
+            <div class="workspace-loading" hidden aria-hidden="true">
+              <span class="workspace-scan-line"></span>
+              <div class="loading-radar" aria-hidden="true">
+                <span class="radar-ring radar-ring--outer"></span>
+                <span class="radar-ring radar-ring--middle"></span>
+                <span class="radar-ring radar-ring--inner"></span>
+                <span class="radar-core">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M3 12h3l2.2-6 4.1 12 2.2-6H21" />
+                  </svg>
+                </span>
+              </div>
+              <p class="loading-status"><span id="loading-status-text">Reading Code...</span><span class="loading-ellipsis" aria-hidden="true"></span></p>
+              <div class="loading-track" aria-hidden="true"><span></span></div>
+            </div>
+
+            <article class="workspace-report" id="workspace-report" aria-live="polite" hidden></article>
+            <div class="workspace-error" id="workspace-error" role="alert" hidden></div>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script src="app.js" defer></script>
+  </body>
+</html>
